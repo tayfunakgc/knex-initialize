@@ -8,7 +8,14 @@ module.exports = {
   development: {
     client: process.env.DB_CONNECTION,
     connection: {
-      filename: path.join('database', process.env.DB_NAME + '.sqlite')
+      filename: path.join('database', process.env.DB_NAME + '.sqlite'),
+      database: process.env.DB_NAME,
+      user:     process.env.DB_USER,
+      password: process.env.DB_PASSWORD
+    },
+    pool: {
+      min: 2,
+      max: 10
     },
     useNullAsDefault: true,
     migrations: {
@@ -23,6 +30,7 @@ module.exports = {
   staging: {
     client: process.env.DB_CONNECTION,
     connection: {
+      filename: path.join('database', process.env.DB_NAME + '.sqlite'),
       database: process.env.DB_NAME,
       user:     process.env.DB_USER,
       password: process.env.DB_PASSWORD
@@ -31,6 +39,7 @@ module.exports = {
       min: 2,
       max: 10
     },
+    useNullAsDefault: true,
     migrations: {
       tableName: 'knex_migrations',
       directory: 'database/migrations'
@@ -43,6 +52,7 @@ module.exports = {
   production: {
     client: process.env.DB_CONNECTION,
     connection: {
+      filename: path.join('database', process.env.DB_NAME + '.sqlite'),
       database: process.env.DB_NAME,
       user:     process.env.DB_USER,
       password: process.env.DB_PASSWORD
@@ -51,6 +61,7 @@ module.exports = {
       min: 2,
       max: 10
     },
+    useNullAsDefault: true,
     migrations: {
       tableName: 'knex_migrations',
       directory: 'database/migrations'
